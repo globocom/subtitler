@@ -8,15 +8,30 @@ describe Subtitler do
           <<-EOF.strip_heredoc
             -Qual é, meu irmão?
             -Minha bicicleta!
-            10:01:28.15\\10:01:31.11
+            00:00:00.00\\00:00:01.00
             Nem sonhando, primo!
-            10:03:10.26\\10:03:12.24
+            00:00:10.00\\00:00:11.00
           EOF
         )
       end
 
       it "should have 2 blocks" do
         expect(subtitle.blocks).to have(2).items
+      end
+
+      context "parsing timestamps" do
+        let (:first_block) { subtitle.blocks.first }
+        let (:second_block) { subtitle.blocks.second }
+
+        it "should parse first block timestamps" do
+          expect(first_block.start_time).to eq("00:00:00.00")
+          expect(first_block.end_time).to eq("00:00:01.00")
+        end
+
+        it "should parse second block timestamps" do
+          expect(second_block.start_time).to eq("00:00:10.00")
+          expect(second_block.end_time).to eq("00:00:11.00")
+        end
       end
     end
   end

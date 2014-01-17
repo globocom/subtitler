@@ -8,8 +8,12 @@ module Subtitler
       blocks = []
 
       input.each_line do |line|
-        if line.match(/(\d{2}:\d{2}:\d{2}[\.\:]\d{2})\\(\d{2}:\d{2}:\d{2}[\.:]\d{2})/)
-          blocks << line
+        timestamps = line.match(/(\d{2}:\d{2}:\d{2}[\.\:]\d{2})\\(\d{2}:\d{2}:\d{2}[\.:]\d{2})/)
+        if timestamps
+          blocks << SubtitleBlock.new(
+            start_time: timestamps[1],
+            end_time: timestamps[2]
+          )
         end
       end
       Subtitle.new(blocks: blocks)
@@ -26,5 +30,12 @@ module Subtitler
   end
 
   class SubtitleBlock
+    attr_accessor :start_time
+    attr_accessor :end_time
+
+    def initialize(start_time: nil, end_time: nil)
+      @start_time = start_time
+      @end_time = end_time
+    end
   end
 end
