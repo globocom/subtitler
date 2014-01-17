@@ -3,7 +3,7 @@ require "spec_helper"
 describe Subtitler do
   describe "parsing input" do
     context "Sofni (.sub) files" do
-      subject do
+      let (:subtitle) do
         Subtitler.parse(
           <<-EOF.strip_heredoc
             -Qual é, meu irmão?
@@ -15,7 +15,9 @@ describe Subtitler do
         )
       end
 
-      it { expect(subject.blocks).to have(2).items }
+      it "should have 2 blocks" do
+        expect(subtitle.blocks).to have(2).items
+      end
     end
   end
 
