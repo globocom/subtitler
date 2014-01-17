@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
+  gem "activesupport"
   gem 'simplecov', :require => false
   gem 'coveralls', :require => false
 end

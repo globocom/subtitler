@@ -12,6 +12,7 @@ SimpleCov.start do
   add_filter "spec"
 end
 
+require "active_support/all"
 require "subtitler"
 
 RSpec.configure do |config|
