@@ -15,10 +15,6 @@ describe Subtitler do
         )
       end
 
-      it "should have 2 blocks" do
-        expect(subtitle.blocks).to have(2).items
-      end
-
       context "parsing timestamps" do
         let (:first_block) { subtitle.blocks.first }
         let (:second_block) { subtitle.blocks.second }

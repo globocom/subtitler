@@ -1,5 +1,7 @@
 require "subtitler/version"
 
+require "models/subtitle"
+
 module Subtitler
   module Parser
     def parse input
@@ -20,14 +22,6 @@ module Subtitler
     end
   end
   extend Parser
-
-  class Subtitle
-    attr_accessor :blocks
-
-    def initialize(blocks: [])
-      @blocks = blocks
-    end
-  end
 
   class SubtitleBlock
     attr_accessor :start_time
